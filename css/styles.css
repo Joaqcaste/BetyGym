@@ -1,0 +1,511 @@
+/* BetyGym — estilos. Mobile first. */
+
+:root {
+  --fondo: #FFF8F5;
+  --fondo-alterno: #FBE9E6;
+  --texto: #3A3A3A;
+  --texto-suave: #5F5B5C;
+  --oscuro: #2E2A2B;
+
+  /* Rosa y gris del logo: solo decoración */
+  --rosa-logo: #FC6282;
+  --rosa-logo-fuerte: #F2496F;
+  --gris-logo: #ADAFAE;
+
+  /* Rosa para botones y links (texto blanco 5,4:1) */
+  --rosa-boton: #C72A52;
+  --rosa-boton-hover: #A91F44;
+
+  --whatsapp: #1E7B46;
+  --whatsapp-hover: #176037;
+
+  --fuente-titulos: "Baloo 2", "Trebuchet MS", sans-serif;
+  --fuente-texto: "Nunito", "Segoe UI", sans-serif;
+
+  --ancho-max: 68rem;
+  --gutter: 1.25rem;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--fondo);
+  color: var(--texto);
+  font-family: var(--fuente-texto);
+  font-size: 1.125rem; /* 18px */
+  line-height: 1.6;
+}
+
+img, svg { display: block; max-width: 100%; }
+
+h1, h2, h3 {
+  font-family: var(--fuente-titulos);
+  font-weight: 700;
+  line-height: 1.15;
+  margin: 0 0 0.75rem;
+}
+
+p { margin: 0 0 1.25rem; }
+
+a { color: var(--rosa-boton); }
+
+:focus-visible {
+  outline: 3px solid var(--texto);
+  outline-offset: 3px;
+}
+
+.contenedor {
+  width: 100%;
+  max-width: var(--ancho-max);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+.saltar {
+  position: absolute;
+  left: var(--gutter);
+  top: -4rem;
+  background: var(--texto);
+  color: var(--fondo);
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  z-index: 30;
+}
+.saltar:focus { top: 0.75rem; }
+
+/* ---------- Botones ---------- */
+
+.boton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  min-height: 3.5rem;
+  padding: 0.75rem 1.75rem;
+  border: 3px solid var(--rosa-boton);
+  border-radius: 999px;
+  background: linear-gradient(135deg, #D6335B, var(--rosa-boton));
+  color: #fff;
+  font-family: var(--fuente-texto);
+  font-size: 1.125rem;
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: 0 6px 16px rgba(199, 42, 82, 0.28);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+.boton:hover {
+  background: var(--rosa-boton-hover);
+  border-color: var(--rosa-boton-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 22px rgba(199, 42, 82, 0.34);
+}
+
+.boton--borde {
+  background: transparent;
+  color: var(--rosa-boton);
+  box-shadow: none;
+}
+.boton--borde:hover { background: var(--rosa-boton); color: #fff; box-shadow: 0 8px 18px rgba(199, 42, 82, 0.28); }
+
+/* ---------- Header ---------- */
+
+.header {
+  background: var(--fondo);
+  border-bottom: 3px solid var(--rosa-logo);
+}
+.header__fila {
+  display: flex;
+  align-items: center;
+  min-height: 5rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+.header { position: relative; }
+.header__fila { justify-content: space-between; }
+.header__logo { display: inline-block; line-height: 0; }
+.header__logo img { height: 5.25rem; width: auto; }
+
+/* ---------- Menú ---------- */
+
+.menu__boton {
+  min-height: 3.25rem;
+  padding: 0.5rem 1.5rem;
+  border: 3px solid var(--rosa-boton);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--rosa-boton);
+  font-family: var(--fuente-texto);
+  font-size: 1.125rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+.menu__boton:hover { background: var(--rosa-boton); color: #fff; }
+
+.menu__lista {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.menu__lista a {
+  display: block;
+  padding: 1rem var(--gutter);
+  color: var(--texto);
+  font-weight: 700;
+  text-decoration: none;
+  border-top: 1px solid var(--gris-logo);
+}
+.menu__lista a:hover { color: var(--rosa-boton); }
+
+/* Con JS: la lista se abre y cierra con el botón, como un panel bajo el header */
+.js .menu__lista {
+  display: none;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  z-index: 10;
+  background: var(--fondo);
+  border-bottom: 3px solid var(--rosa-logo);
+  box-shadow: 0 8px 14px rgba(46, 42, 43, 0.12);
+}
+.js .menu__lista--abierta { display: block; }
+
+/* Sin JS no hace falta el botón */
+html:not(.js) .menu__boton { display: none; }
+html:not(.js) .header__fila { flex-wrap: wrap; }
+
+/* ---------- Inicio ---------- */
+
+.inicio {
+  padding: 2.5rem 0 3rem;
+  overflow: hidden;
+  text-align: center;
+  /* brillo rosado suave + flores bien claras a los costados */
+  background:
+    url("../assets/img/flor-2.svg") no-repeat left -70px bottom 10px / 190px,
+    url("../assets/img/flor.svg") no-repeat right -80px top 20px / 220px,
+    radial-gradient(ellipse at 50% 45%, rgba(252, 98, 130, 0.16), transparent 65%),
+    var(--fondo);
+}
+
+.inicio__grilla { display: block; }
+
+.inicio__etiqueta {
+  display: inline-block;
+  margin: 0 0 0.75rem;
+  color: var(--texto-suave);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+}
+
+.inicio h1 {
+  font-size: 2.6rem;
+  text-wrap: balance;
+}
+/* Título grande y grueso: el rosa del logo llega a 3:1, suficiente para texto grande */
+.inicio h1 .resalte { color: var(--rosa-logo-fuerte); }
+
+.inicio__texto { max-width: 40rem; margin: 0 auto; }
+.inicio__texto .bajada { font-size: 1.2rem; }
+
+.inicio__botones {
+  display: grid;
+  gap: 0.9rem;
+  margin-top: 1.75rem;
+}
+
+/* ---------- Secciones (base) ---------- */
+
+.actividades,
+.comunidad {
+  position: relative;
+  padding: 3rem 0;
+  background-color: var(--fondo-alterno);
+  background-repeat: no-repeat;
+}
+.actividades {
+  background-image: url("../assets/img/flor.svg"), url("../assets/img/flor-2.svg");
+  background-position: right -80px top 30px, left -60px bottom 40px;
+  background-size: 220px, 150px;
+}
+.comunidad {
+  background-image: url("../assets/img/flor-2.svg"), url("../assets/img/flor.svg");
+  background-position: left -70px top 40px, right -60px bottom 30px;
+  background-size: 170px, 210px;
+}
+.modalidades,
+.sobre { padding: 3rem 0; }
+
+/* Bordes ondulados: las bandas rosadas se funden suave con las de arriba y abajo */
+.actividades::before,
+.actividades::after,
+.comunidad::before,
+.comunidad::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 28px;
+  pointer-events: none;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+.actividades::before,
+.comunidad::before {
+  top: -27px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 40' preserveAspectRatio='none'%3E%3Cpath d='M0 40V22C240 0 480 0 720 18s480 20 720-6v28z' fill='%23FBE9E6'/%3E%3C/svg%3E");
+}
+.actividades::after,
+.comunidad::after {
+  bottom: -27px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 40' preserveAspectRatio='none'%3E%3Cpath d='M0 0v28c240 12 480 12 720-6s480-20 720 6V0z' fill='%23FBE9E6'/%3E%3C/svg%3E");
+}
+
+.actividades h2,
+.modalidades h2,
+.comunidad h2,
+.sobre h2 { font-size: 2.1rem; }
+.seccion__bajada { max-width: 38rem; color: var(--texto-suave); }
+
+/* ---------- Actividades ---------- */
+
+.tarjetas {
+  display: grid;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.tarjeta {
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  background: var(--fondo);
+  border: 1px solid var(--gris-logo);
+  border-top: 6px solid var(--rosa-logo);
+  border-radius: 1.25rem;
+  box-shadow: 0 10px 26px rgba(199, 42, 82, 0.1);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.tarjeta:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 36px rgba(199, 42, 82, 0.16);
+}
+.tarjeta h3 { font-size: 1.6rem; }
+.tarjeta ul {
+  margin: 0 0 1.5rem;
+  padding-left: 1.25rem;
+}
+.tarjeta li { margin-bottom: 0.35rem; }
+.tarjeta li::marker { color: var(--rosa-logo-fuerte); }
+.tarjeta .boton { margin-top: auto; }
+
+/* ---------- Sobre Bety ---------- */
+
+.sobre__grilla {
+  display: grid;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+.sobre__bloque h3 { font-size: 1.6rem; }
+
+/* ---------- Contacto (fondo oscuro) ---------- */
+
+.contacto {
+  position: relative;
+  /* en celular deja lugar para que el botón flotante no tape el final */
+  padding: 3.5rem 0 7rem;
+  background:
+    url("../assets/img/flor.svg") no-repeat right -90px top 30px / 230px,
+    url("../assets/img/flor-2.svg") no-repeat left -70px bottom 40px / 170px,
+    var(--oscuro);
+  color: var(--fondo);
+  text-align: center;
+}
+/* ola superior en el color oscuro */
+.contacto::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -27px;
+  height: 28px;
+  pointer-events: none;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 40' preserveAspectRatio='none'%3E%3Cpath d='M0 40V22C240 0 480 0 720 18s480 20 720-6v28z' fill='%232E2A2B'/%3E%3C/svg%3E") no-repeat / 100% 100%;
+}
+.contacto__contenido { position: relative; max-width: 52rem; }
+.contacto__bajada { max-width: 38rem; margin-left: auto; margin-right: auto; }
+.contacto__logo { width: 10rem; height: auto; margin: 0 auto 1.25rem; }
+.contacto h2 { font-size: 2.1rem; }
+.contacto__bajada { margin-bottom: 1.75rem; }
+
+.contacto__botones {
+  display: grid;
+  gap: 0.9rem;
+  margin-bottom: 2rem;
+}
+/* Botón contorneado para fondos oscuros (rosa del logo sobre oscuro: 4,9:1) */
+.boton--claro {
+  background: transparent;
+  border-color: var(--rosa-logo);
+  color: var(--rosa-logo);
+  box-shadow: none;
+}
+.boton--claro:hover {
+  background: var(--rosa-logo);
+  border-color: var(--rosa-logo);
+  color: var(--oscuro);
+  box-shadow: 0 8px 18px rgba(252, 98, 130, 0.3);
+}
+
+.contacto a:not(.boton) { color: var(--rosa-logo); font-weight: 700; }
+.contacto a:not(.boton):hover { color: #fff; }
+.contacto :focus-visible { outline-color: var(--fondo); }
+.contacto__insta { font-size: 1.2rem; margin-bottom: 1rem; }
+.contacto__pie { margin: 0; color: var(--gris-logo); font-size: 0.95rem; }
+
+.sobre__lista {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.sobre__lista li {
+  position: relative;
+  margin-bottom: 1rem;
+  padding-left: 2rem;
+}
+/* florcita rosa como viñeta */
+.sobre__lista li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.35rem;
+  width: 1.25rem;
+  height: 1.25rem;
+  background: url("../assets/img/flor-vineta.svg") center / contain no-repeat;
+}
+
+.mapa {
+  width: 100%;
+  height: 16rem;
+  margin: 0 0 1.5rem;
+  border: 1px solid var(--gris-logo);
+  border-radius: 1rem;
+  background: var(--fondo-alterno);
+}
+
+/* ---------- Botón flotante de WhatsApp ---------- */
+
+.wa-flotante {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 20;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-height: 3.75rem;
+  padding: 0.5rem 1.4rem 0.5rem 1rem;
+  border-radius: 999px;
+  background: var(--whatsapp);
+  color: #fff;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 4px 14px rgba(46, 42, 43, 0.3);
+}
+.wa-flotante:hover { background: var(--whatsapp-hover); }
+.wa-flotante svg { width: 2rem; height: 2rem; fill: currentColor; flex: none; }
+
+/* ---------- Pantallas más grandes ---------- */
+
+@media (min-width: 48rem) {
+  :root { --gutter: 2rem; }
+
+  .contacto { padding-bottom: 5rem; }
+  .contacto h2 { font-size: 2.6rem; }
+  .contacto__logo { width: 13rem; }
+  .contacto::before { top: -39px; height: 40px; }
+  .contacto__botones { grid-template-columns: repeat(3, auto); justify-content: center; }
+
+  .header__logo img { height: 6.5rem; }
+
+  /* En pantallas grandes el menú va en fila, sin botón */
+  .menu__boton { display: none; }
+  .menu__lista,
+  .js .menu__lista {
+    display: flex;
+    position: static;
+    gap: 0.5rem;
+    background: none;
+    border: 0;
+    box-shadow: none;
+  }
+  .menu__lista a { padding: 0.75rem 1rem; border: 0; border-radius: 999px; }
+  .menu__lista a:hover { background: var(--fondo-alterno); }
+
+  .actividades,
+  .modalidades,
+  .comunidad,
+  .sobre { padding: 5rem 0; }
+  .sobre__grilla { grid-template-columns: 1fr 1fr; gap: 3rem; }
+  .actividades::before, .comunidad::before { top: -39px; }
+  .actividades::after, .comunidad::after { bottom: -39px; }
+  .actividades::before, .actividades::after,
+  .comunidad::before, .comunidad::after { height: 40px; }
+  .actividades {
+    background-position: right -40px top 60px, left -50px bottom 70px;
+    background-size: 340px, 230px;
+  }
+  .comunidad {
+    background-position: left -50px top 70px, right -40px bottom 50px;
+    background-size: 250px, 320px;
+  }
+  .inicio {
+    background-position: left -50px bottom 20px, right -40px top 30px, 0 0, 0 0;
+    background-size: 280px, 340px, auto, auto;
+  }
+  .actividades h2,
+  .modalidades h2,
+  .comunidad h2,
+  .sobre h2 { font-size: 2.6rem; }
+  .tarjetas { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+
+  .inicio { padding: 5rem 0 6rem; }
+  .inicio h1 { font-size: 3.8rem; }
+  .inicio__botones { grid-template-columns: repeat(2, auto); justify-content: center; }
+
+  /* En la compu el botón flotante se achica a solo el ícono */
+  .wa-flotante {
+    min-height: 0;
+    width: 3.75rem;
+    height: 3.75rem;
+    padding: 0;
+    justify-content: center;
+  }
+  .wa-flotante span { display: none; }
+}
+
+/* ---------- Aparición suave al hacer scroll (la agrega js/efectos.js) ---------- */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .boton, .tarjeta { transition: none; }
+  .boton:hover, .tarjeta:hover { transform: none; }
+}
