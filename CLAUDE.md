@@ -29,6 +29,9 @@ Botones que abren WhatsApp con un mensaje ya escrito:
   - Precios: "¡Hola Bety! Quería consultarte los precios de las clases."
   - Por actividad (botón en cada tarjeta): "¡Hola Bety! Quería consultarte por las clases de <actividad>."
   - General: "¡Hola Bety! Quería hacerte una consulta."
+  - Clases online: "¡Hola Bety! Quería consultarte por las clases online."
+  - Grupo de alimentación: "¡Hola Bety! Quería sumarme al grupo de alimentación saludable."
+  - Viajes: "¡Hola Bety! Quería consultarte por los viajes grupales."
 - Botón flotante de WhatsApp siempre visible en celular (mensaje general).
 
 ## Secciones (primera versión)
